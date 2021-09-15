@@ -1,0 +1,77 @@
+---
+title: "`r getOption('startr.title')` - The missing PIO"
+date: "`r format(Sys.Date(), '%B %d, %Y')`"
+author: "`r getOption('startr.author')`"
+output:
+  html_document:
+    code_folding: "show"
+    df_print: kable
+    self_contained: no
+    theme: spacelab
+    toc: yes
+    toc_depth: 3
+editor_options: 
+  chunk_output_type: inline
+---
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.width=8.66, fig.height=6, results="asis", collapse = TRUE}
+
+if (!require('upstartr')) install.packages('upstartr'); library('upstartr')
+
+run_config()
+
+source(here::here("R/", "utils.R"))
+source(here::here("R/", "functions.R"))
+source(here::here("R/", "palette.R"))
+source(here::here("R/", "theme.R"))
+
+run_process()
+run_analyze()
+run_visualize()
+
+```
+
+
+## Monthly press conferences
+
+• 69.76 per cent decrease in press conferences between 2018 and 2021
+• Press conferences we halved in 2020 and halved again in 2021
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.width=8.66, fig.height=6, results="asis", collapse = TRUE}
+
+plot(wfp_pressers_2018_2021_annual)
+
+plot(wfp_pressers_2018_2021_monthly)
+
+# ggplotly(wfp_pressers_2018_2021_monthly)
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.width=8.66, fig.height=6, results="asis", collapse = TRUE}
+datatable(wps_pressers_2018_2021_annual,
+  caption = "Table: wps_pressers_2018_2021_annual",
+  class = "cell-border stripe",
+  rownames = FALSE,
+  filter = "top",
+  options = list(
+    pageLength = 20,
+    order = list(list(0, "asc"))
+    # language = list(search = 'Filter:'),
+    # search = list(regex = TRUE, caseInsensitive = FALSE, search = 'Police')
+  )
+)
+
+datatable(wps_pressers_2018_2021_monthly_wide,
+  caption = "Table: wps_pressers_2018_2021_monthly_wide",
+  class = "cell-border stripe",
+  rownames = FALSE,
+  filter = "top",
+  options = list(
+    pageLength = 20,
+    order = list(list(0, "asc"))
+    # language = list(search = 'Filter:'),
+    # search = list(regex = TRUE, caseInsensitive = FALSE, search = 'Police')
+  )
+)
+
+```
