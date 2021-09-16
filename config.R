@@ -22,4 +22,5 @@ initialize_startr(
 )
 
 
-wps_pressers_2018_2021.raw.file <- dir_data_raw("WFP - WPS pressers - wps-press-conferences.csv")
+wps_releases_2018_2021.raw.file <- dir_data_raw("WFP - WPS Missing PIO - wps-press-releases.csv")
+wps_pressers_2018_2021.raw.file <- dir_data_raw("WFP - WPS Missing PIO - wps-press-conferences.csv")

@@ -19,6 +19,5 @@ wps_pressers_2018_2021.raw <- read_csv(wps_pressers_2018_2021.raw.file) %>%
     date, type
   )
 
-
 write_feather(wps_pressers_2018_2021.raw, dir_data_processed('wps_pressers_2018_2021.feather'))
 
