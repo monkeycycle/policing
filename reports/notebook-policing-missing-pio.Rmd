@@ -32,6 +32,53 @@ run_visualize()
 
 ```
 
+***
+
+
+## WPS press conferences
+
+* 69.76 per cent decrease in press conferences between 2018 and 2021
+* The number of press conferences was halved in 2020 with a 43.8 per cent decrease from 2019. 
+* At a little less than three-quarters of the way through the year, 2021 is on track to set a new record low for the number of WPS press conferences
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.width=8.66, fig.height=6, results="asis", collapse = TRUE}
+
+plot(wfp_pressers_2018_2021_annual)
+
+plot(wfp_pressers_2018_2021_monthly)
+
+# ggplotly(wfp_pressers_2018_2021_monthly)
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.width=8.66, fig.height=6, results="asis", collapse = TRUE}
+datatable(wps_pressers_2018_2021_annual,
+  caption = "Table: wps_pressers_2018_2021_annual",
+  class = "cell-border stripe",
+  rownames = FALSE,
+  filter = "top",
+  options = list(
+    pageLength = 20,
+    order = list(list(0, "asc"))
+    # language = list(search = 'Filter:'),
+    # search = list(regex = TRUE, caseInsensitive = FALSE, search = 'Police')
+  )
+)
+
+datatable(wps_pressers_2018_2021_monthly_wide,
+  caption = "Table: wps_pressers_2018_2021_monthly_wide",
+  class = "cell-border stripe",
+  rownames = FALSE,
+  filter = "top",
+  options = list(
+    pageLength = 20,
+    order = list(list(0, "asc"))
+    # language = list(search = 'Filter:'),
+    # search = list(regex = TRUE, caseInsensitive = FALSE, search = 'Police')
+  )
+)
+
+```
+
 
 ## WPS press releases
 
@@ -73,46 +120,31 @@ datatable(wps_releases_2018_2021_monthly_wide,
 
 ```
 
+***
 
-## WPS press conferences
+## Crime
 
-• 69.76 per cent decrease in press conferences between 2018 and 2021
-• The number of press conferences was halved in 2020 and halved again in 2021
 
+### Drug crimes (CDSA)
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.width=8.66, fig.height=6, results="asis", collapse = TRUE}
-
-plot(wfp_pressers_2018_2021_annual)
-
-plot(wfp_pressers_2018_2021_monthly)
-
-# ggplotly(wfp_pressers_2018_2021_monthly)
+plot(wfp_wps_cdsa_crimes)
+plot(wfp_wps_cdsa_crimes_clearance)
 ```
 
+### Property crimes
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.width=8.66, fig.height=6, results="asis", collapse = TRUE}
-datatable(wps_pressers_2018_2021_annual,
-  caption = "Table: wps_pressers_2018_2021_annual",
-  class = "cell-border stripe",
-  rownames = FALSE,
-  filter = "top",
-  options = list(
-    pageLength = 20,
-    order = list(list(0, "asc"))
-    # language = list(search = 'Filter:'),
-    # search = list(regex = TRUE, caseInsensitive = FALSE, search = 'Police')
-  )
-)
-
-datatable(wps_pressers_2018_2021_monthly_wide,
-  caption = "Table: wps_pressers_2018_2021_monthly_wide",
-  class = "cell-border stripe",
-  rownames = FALSE,
-  filter = "top",
-  options = list(
-    pageLength = 20,
-    order = list(list(0, "asc"))
-    # language = list(search = 'Filter:'),
-    # search = list(regex = TRUE, caseInsensitive = FALSE, search = 'Police')
-  )
-)
-
+plot(wfp_wps_property_crimes)
+plot(wfp_wps_property_crimes_clearance)
 ```
+
+### Violent crimes
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.width=8.66, fig.height=6, results="asis", collapse = TRUE}
+plot(wfp_wps_violent_crimes)
+plot(wfp_wps_violent_crimes_clearance)
+```
+
+### Clearance rates
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.width=8.66, fig.height=6, results="asis", collapse = TRUE}
+plot(wfp_winnipeg_wps_annual_reports__clearance_facet)
+```
+

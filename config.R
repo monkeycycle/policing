@@ -14,13 +14,21 @@ initialize_startr(
     'tidyverse', 'glue', 'lubridate', 'readxl', 'feather',
     'scales', 'knitr', 'rvest', 'janitor', 'zoo',
     "readr", "DT", "dotenv",
-    "prettydoc", "plotly"
+    "prettydoc", "plotly",
+    "ggtext", "showtext"
     # 'sf', 'tidymodels',
     # 'gganimate', 'tgamtheme',
     # 'cansim', 'cancensus'
   )
 )
 
+time_pause <- .5
+font_add_google("Open Sans")
+last_update_timestamp <- Sys.Date()
 
+# Data files
 wps_releases_2018_2021.raw.file <- dir_data_raw("WFP - WPS Missing PIO - wps-press-releases.csv")
 wps_pressers_2018_2021.raw.file <- dir_data_raw("WFP - WPS Missing PIO - wps-press-conferences.csv")
+wps_annual_reports.raw.file <- dir_data_raw("wps_annual_reports.xlsx")
+
+ottawa_police_pressers.raw.file <- dir_data_raw("WFP - WPS Missing PIO - ottawa-police-releases.csv")

@@ -64,9 +64,7 @@ p_pressers_2018_2021_monthly <- ggplot(wps_pressers_2018_2021_monthly,aes(x=year
   )
 
 wfp_pressers_2018_2021_monthly <- prepare_plot(p_pressers_2018_2021_monthly)
-
 ggsave_pngpdf(wfp_pressers_2018_2021_monthly, "wfp_pressers_2018_2021_monthly", width_var=8.66, height_var=6, dpi_var=96, scale_var=1, units_var="in")
 
 wfp_pressers_2018_2021_annual <- prepare_plot(p_pressers_2018_2021_annual)
-
 ggsave_pngpdf(wfp_pressers_2018_2021_annual, "wfp_pressers_2018_2021_annual", width_var=8.66, height_var=6, dpi_var=96, scale_var=1, units_var="in")
