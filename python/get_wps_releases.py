@@ -9,6 +9,11 @@ import numpy as np
 URL = "https://www.winnipeg.ca/police/press/all_releases.stm"
 page = requests.get(URL)
 
+
+csv_file = open("cached/wps_releases.csv", 'w')
+csv_writer = csv.writer(csv_file, delimiter=",")
+
+
 page_content = BeautifulSoup(page.content, "html.parser")
 
 # Press releases are posted here under the police branch of the Winnipeg website
@@ -16,7 +21,7 @@ police_path = "/police/press/"
 
 page_links = page_content.find_all('a', href=True)
 
-# arra to hold the press release details we scrape together
+# array to hold the press release details we scrape together
 d = []
 
 
@@ -60,9 +65,19 @@ for link in page_links:
                 # Save a copy for reference
                 url_year_month_day = "https://winnipeg.ca" + link_2_href
 
-                print("Downloading:", url_year_month_day)
-
                 page_pr = requests.get(url_year_month_day)
+
+                # Get h1 - h4 to find the subject matter
+                data = page_pr.text
+                soup = BeautifulSoup(data)
+                headings = soup.find_all(re.compile('^h[1-6]$'))
+
+                print(url_year_month_day)
+                for heading in headings:
+                  if((heading.text.strip() != "Was this information helpful?") | (heading.text.strip() != "How can we make this web page better?")):
+                    print("|", heading.text.strip())
+
+                print(" ")
 
                 filename_out = link_2_href.replace("/police/press/", "", 1).replace("/", "_").replace(".stm", "", 1).replace(
                     ".aspx", "", 1)
@@ -78,4 +93,4 @@ for link in page_links:
                 # print(link_2_href)
 
 
-
+csv_file.close()

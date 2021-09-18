@@ -1,10 +1,10 @@
 ---
 title: "`r getOption('startr.title')` - The missing PIO"
-date: "`r format(Sys.Date(), '%B %d, %Y')`"
 author: "`r getOption('startr.author')`"
+date: "`r format(Sys.Date(), '%B %d, %Y')`"
 output:
   html_document:
-    code_folding: "show"
+    code_folding: show
     df_print: kable
     self_contained: no
     theme: spacelab
@@ -35,11 +35,17 @@ run_visualize()
 ***
 
 
-## WPS press conferences
 
 * 69.76 per cent decrease in press conferences between 2018 and 2021
 * The number of press conferences was halved in 2020 with a 43.8 per cent decrease from 2019. 
 * At a little less than three-quarters of the way through the year, 2021 is on track to set a new record low for the number of WPS press conferences
+
+* Ottawa Police (2016 population 989,657) have issued 553 press releases since 2018 compared to 237 from the Winnipeg Police Service (2016 population 711,925)
+
+*** 
+
+## WPS press conferences
+
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.width=8.66, fig.height=6, results="asis", collapse = TRUE}
 
@@ -128,7 +134,6 @@ datatable(wps_releases_2018_2021_monthly_wide,
 ### Drug crimes (CDSA)
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.width=8.66, fig.height=6, results="asis", collapse = TRUE}
 plot(wfp_wps_cdsa_crimes)
-plot(wfp_wps_cdsa_crimes_clearance)
 ```
 
 ### Property crimes
@@ -146,5 +151,32 @@ plot(wfp_wps_violent_crimes_clearance)
 ### Clearance rates
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.width=8.66, fig.height=6, results="asis", collapse = TRUE}
 plot(wfp_winnipeg_wps_annual_reports__clearance_facet)
+
+plot(wfp_wps_cdsa_crimes_clearance)
+
+
 ```
 
+
+*** 
+
+## Other cities
+
+### Ottawa
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.width=8.66, fig.height=6, results="asis", collapse = TRUE}
+
+datatable(ottawa_police_pressers_annual,
+  caption = "Table: ottawa_police_pressers_annual",
+  class = "cell-border stripe",
+  rownames = FALSE,
+  filter = "top",
+  options = list(
+    pageLength = 20,
+    order = list(list(0, "asc"))
+    # language = list(search = 'Filter:'),
+    # search = list(regex = TRUE, caseInsensitive = FALSE, search = 'Police')
+  )
+)
+
+```

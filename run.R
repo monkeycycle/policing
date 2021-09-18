@@ -10,4 +10,6 @@ run_process()
 run_analyze()
 run_visualize()
 
+source(here::here("R/", "process_wps_release_headings.R"))
+
 run_notebook(filename="notebook-policing-missing-pio.Rmd")
