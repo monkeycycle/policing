@@ -15,7 +15,7 @@ initialize_startr(
     'scales', 'knitr', 'rvest', 'janitor', 'zoo',
     "readr", "DT", "dotenv",
     "prettydoc", "plotly",
-    "ggtext", "showtext"
+    "ggtext", "showtext", "stringr"
     # 'sf', 'tidymodels',
     # 'gganimate', 'tgamtheme',
     # 'cansim', 'cancensus'
