@@ -1,6 +1,6 @@
 # Policing
 
-Ongoing analysis of policing data, primaril focussed on Winnipeg Police Service.
+Ongoing analysis of policing data, primarily focussed on Winnipeg Police Service.
 
 
 
