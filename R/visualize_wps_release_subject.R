@@ -11,8 +11,8 @@ p_releases_2018_2021_annual_subject <- ggplot(wps_release_headings_annual_subjec
                      limits = c(0, 300)
   ) +
   labs(
-    title="Press releases issued by the Winnipeg Police Service",
-    subtitle="Number of press releases by subject of announcement",
+    title="Subject of press releases issued by the Winnipeg Police Service",
+    subtitle="Includes releases containing multiple subjects",
     x="",
     y="",
     caption = paste("Note: The 2018 releases are limited to October through December.",
@@ -27,7 +27,8 @@ p_releases_2018_2021_annual_subject <- ggplot(wps_release_headings_annual_subjec
     panel.grid.major.x = ggplot2::element_blank(),
     panel.grid.major.y = ggplot2::element_blank(),
     panel.grid.minor.x = ggplot2::element_blank(),
-    panel.grid.minor.y = ggplot2::element_blank()
+    panel.grid.minor.y = ggplot2::element_blank(),
+    legend.position = "right"
   )
 
 wfp_releases_2018_2021_annual_subject <- prepare_plot(p_releases_2018_2021_annual_subject)
@@ -48,8 +49,8 @@ p_releases_2018_2021_monthly_subject <- ggplot(wps_release_headings_monthly_subj
                      limits = c(0, 100)
   ) +
   labs(
-    title="Monthly press releases issued by the Winnipeg Police Service",
-    subtitle="Number of press releases by subject of announcement",
+    title="Subject of press releases issued by the Winnipeg Police Service",
+    subtitle="Includes releases containing multiple subjects",
     x="",
     y="",
     caption = paste("Note: The 2018 releases are limited to October through December.",
@@ -64,7 +65,8 @@ p_releases_2018_2021_monthly_subject <- ggplot(wps_release_headings_monthly_subj
     panel.grid.major.x = ggplot2::element_blank(),
     panel.grid.major.y = ggplot2::element_blank(),
     panel.grid.minor.x = ggplot2::element_blank(),
-    panel.grid.minor.y = ggplot2::element_blank()
+    panel.grid.minor.y = ggplot2::element_blank(),
+    legend.position = "right"
   )
 
 wfp_releases_2018_2021_monthly_subject <- prepare_plot(p_releases_2018_2021_monthly_subject)

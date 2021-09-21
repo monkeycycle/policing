@@ -30,6 +30,11 @@ run_process()
 run_analyze()
 run_visualize()
 
+source(here::here("R/", "process_wps_release_headings.R"))
+source(here::here("R/", "visualize_wps_release_types.R"))
+source(here::here("R/", "visualize_wps_release_subject.R"))
+
+
 ```
 
 ***
@@ -125,6 +130,85 @@ datatable(wps_releases_2018_2021_monthly_wide,
 )
 
 ```
+
+*** 
+
+## Press releases by type and subject
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.width=8.66, fig.height=6, results="asis", collapse = TRUE}
+plot(wfp_releases_2018_2021_annual_type)
+```
+
+
+**TODO: Subject list needs trimming**
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.width=8.66, fig.height=6, results="asis", collapse = TRUE}
+plot(wfp_releases_2018_2021_annual_subject)
+```
+
+
+### Release by type
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.width=8.66, fig.height=6, results="asis", collapse = TRUE}
+datatable(wps_release_headings_annual_type_wide,
+  caption = "Table: wps_release_headings_annual_type_wide",
+  class = "cell-border stripe",
+  rownames = FALSE,
+  filter = "top",
+  options = list(
+    pageLength = 20,
+    order = list(list(0, "asc"))
+    # language = list(search = 'Filter:'),
+    # search = list(regex = TRUE, caseInsensitive = FALSE, search = 'Police')
+  )
+)
+
+datatable(wps_release_headings_monthly_type_wide,
+  caption = "Table: wps_release_headings_monthly_type_wide",
+  class = "cell-border stripe",
+  rownames = FALSE,
+  filter = "top",
+  options = list(
+    pageLength = 20,
+    order = list(list(0, "asc"))
+    # language = list(search = 'Filter:'),
+    # search = list(regex = TRUE, caseInsensitive = FALSE, search = 'Police')
+  )
+)
+
+```
+
+
+### Release by subject
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.width=8.66, fig.height=6, results="asis", collapse = TRUE}
+datatable(wps_release_headings_monthly_subject_wide,
+  caption = "Table: wps_release_headings_monthly_subject_wide",
+  class = "cell-border stripe",
+  rownames = FALSE,
+  filter = "top",
+  options = list(
+    pageLength = 20,
+    order = list(list(0, "asc"))
+    # language = list(search = 'Filter:'),
+    # search = list(regex = TRUE, caseInsensitive = FALSE, search = 'Police')
+  )
+)
+
+datatable(wps_release_headings_annual_subject_wide,
+  caption = "Table: wps_release_headings_annual_subject_wide",
+  class = "cell-border stripe",
+  rownames = FALSE,
+  filter = "top",
+  options = list(
+    pageLength = 20,
+    order = list(list(0, "asc"))
+    # language = list(search = 'Filter:'),
+    # search = list(regex = TRUE, caseInsensitive = FALSE, search = 'Police')
+  )
+)
+
+```
+
 
 ***
 

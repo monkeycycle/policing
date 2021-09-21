@@ -1,71 +1,74 @@
 
 encode_release <-  function(str){
 
+  pr_type = case_when(
+    grepl("Investigation", str, fixed=FALSE) ~  "Investigation",
+    grepl("Update", str, fixed=FALSE) ~  "Update",
+    grepl("Arrest", str, fixed=FALSE) ~  "Arrest",
+    grepl("Warning", str, fixed=FALSE) ~  "Warning",
+    grepl("Missing Person Located", str, fixed=FALSE) ~  "Missing person located",
+    grepl("Public Assistance", str, fixed=FALSE) ~  "Public assistance",
+    grepl("Community Notification", str, fixed=FALSE) ~  "Community notification",
+    grepl("Public Advisory", str, fixed=FALSE) ~  "Public advisory",
+    grepl("Officer Involved Shooting", str, fixed=FALSE) ~  "Officer-involved shooting",
+    grepl("Officer-Involved Shooting", str, fixed=FALSE) ~  "Officer-involved shooting",
+    grepl("Statement", str, fixed=FALSE) ~  "Statement",
+    grepl("Operation", str, fixed=FALSE) ~  "Operation/project announcement/update",
+    grepl("OPERATION", str, fixed=FALSE) ~  "Operation/project announcement/update",
+    grepl("Project", str, fixed=FALSE) ~  "Operation/project announcement/update",
+    grepl("PROJECT", str, fixed=FALSE) ~  "Operation/project announcement/update",
+    grepl("Charges", str, fixed=FALSE) ~  "Charges",
+    TRUE ~  "Other"
+  )
 
-  pr_type = ""
-  pr_type = ifelse(grepl("Investigation", str, fixed=TRUE), paste(pr_type, "Investigation", sep=" - "), pr_type)
-  pr_type = ifelse(grepl("Update", str, fixed=TRUE), paste(pr_type, "Update", sep=" - "), pr_type)
-  pr_type = ifelse(grepl("Arrest", str, fixed=TRUE), paste(pr_type, "Arrest", sep=" - "), pr_type)
-  pr_type = ifelse(grepl("Missing Person Located", str, fixed=TRUE), paste(pr_type, "Missing person located", sep=" - "), pr_type)
-  pr_type = ifelse(grepl("Public Assistance", str, fixed=TRUE), paste(pr_type, "Public assistance", sep=" - "), pr_type)
-  pr_type = ifelse(grepl("Community Notification", str, fixed=TRUE), paste(pr_type, "Community notification", sep=" - "), pr_type)
-  pr_type = ifelse(grepl("Public Advisory", str, fixed=TRUE), paste(pr_type, "Public advisory", sep=" - "), pr_type)
-  pr_type = ifelse(grepl("Officer Involved Shooting", str, fixed=TRUE), paste(pr_type, "Officer-involved shooting", sep=" - "), pr_type)
-  pr_type = ifelse(grepl("Officer-Involved Shooting", str, fixed=TRUE), paste(pr_type, "Officer-involved shooting", sep=" - "), pr_type)
-  pr_type = ifelse(grepl("Statement", str, fixed=TRUE), paste(pr_type, "Statement", sep=" - "), pr_type)
-  pr_type = ifelse(grepl("Operation", str, fixed=TRUE), paste(pr_type, "Project announcement/update", sep=" - "), pr_type)
-  pr_type = ifelse(grepl("OPERATION", str, fixed=TRUE), paste(pr_type, "Project announcement/update", sep=" - "), pr_type)
-  pr_type = ifelse(grepl("Project", str, fixed=TRUE), paste(pr_type, "Project announcement/update", sep=" - "), pr_type)
-  pr_type = ifelse(grepl("PROJECT", str, fixed=TRUE), paste(pr_type, "Project announcement/update", sep=" - "), pr_type)
 
 
+  pr_subject = case_when(
+    grepl("Drugs", str, fixed=FALSE) ~ "Drugs",
+    grepl("Drug Seizure", str, fixed=FALSE) ~ "Drugs",
+    grepl("Drug Offence", str, fixed=FALSE) ~ "Drugs",
+    grepl("Homicide", str, fixed=FALSE) ~ "Homicide",
+    grepl("Weapon", str, fixed=FALSE) ~ "Weapon",
+    grepl("Firearms Seizure", str, fixed=FALSE) ~ "Firearms",
+    grepl("Firearm", str, fixed=FALSE) ~ "Firearms",
+    grepl("Theft from Motor Vehicle", str, fixed=FALSE) ~ "Theft from motor vehicle",
+    grepl("Assault with a Weapon", str, fixed=FALSE) ~ "Assault with a weapon",
+    grepl("Break & Enter", str, fixed=FALSE) ~ "Break & enter",
+    grepl("Aggravated Assault", str, fixed=FALSE) ~ "Aggravated assault",
+    grepl("Assault:", str) ~ "Assault",
+    grepl("Assault â", str) ~ "Assault",
+    grepl("Commercial Robbery", str, fixed=FALSE) ~ "Commercial robbery",
+    grepl("Scams and Frauds", str, fixed=FALSE) ~ "Fraud",
+    grepl("Fraud", str, fixed=FALSE) ~ "Fraud",
+    grepl("Shooting", str, fixed=FALSE) ~ "Shooting",
+    grepl("Robbery", str, fixed=FALSE) ~ "Robbery",
+    grepl("Serious Assault", str, fixed=FALSE) ~ "Serious assault",
+    grepl("Serious Motor Vehicle Collision", str, fixed=FALSE) ~ "MVC",
+    grepl("Motor Vehicle Collision", str, fixed=FALSE) ~ "MVC",
+    grepl("Police Involved Motor Vehicle Collision", str, fixed=FALSE) ~ "Police-involved MVC",
+    grepl("Missing Person", str, fixed=FALSE) ~ "Missing person",
+    grepl("MISSING PERSON", str, fixed=FALSE) ~ "Missing person",
+    grepl("Arson", str, fixed=FALSE) ~ "Arson",
+    grepl("High-Risk Sex Offender", str, fixed=FALSE) ~ "High-Risk sex offender",
+    grepl("Convicted Sex Offender", str, fixed=FALSE) ~ "Convicted sex offender",
+    grepl("Child Sexual Abuse", str, fixed=FALSE) ~ "Child sexual abuse",
+    grepl("Sexual Exploitation", str, fixed=FALSE) ~ "Sexual exploitation",
+    grepl("Sexual Assault Suspect", str, fixed=FALSE) ~ "Sexual assault suspect",
+    grepl("Sexual Assaults ", str, fixed=FALSE) ~ "Sexual assault",
+    grepl("Sexual Assault ", str, fixed=FALSE) ~ "Sexual assault",
+    grepl("Sexual  Assault", str, fixed=FALSE) ~ "Sexual assault",
+    grepl("Sexual Assault:", str, fixed=FALSE) ~ "Sexual assault",
+    grepl("Stabbing", str, fixed=FALSE) ~ "Stabbing",
+    grepl("Suspicious Death", str, fixed=FALSE) ~ "Suspicious death",
+    grepl("Stolen Vehicle", str, fixed=FALSE) ~ "Stolen vehicle",
+    grepl("Commercial Robbery", str, fixed=FALSE) ~ "Commercial Robbery",
+    grepl("Assault Peace Officer", str, fixed=FALSE) ~ "Assault peace officer",
+    grepl("Carjacking", str, fixed=FALSE) ~ "Carjacking",
+    grepl("Suspicious Incidents", str, fixed=FALSE) ~ "Suspicious incidents",
+    TRUE ~  "Other"
+  )
 
-  pr_subject = ""
-  pr_subject = ifelse(grepl("Drugs", str, fixed=TRUE), paste(pr_subject, "Drugs", sep=" - "), pr_subject)
-  pr_subject = ifelse(grepl("Drug Seizure", str, fixed=TRUE), paste(pr_subject, "Drug seizure", sep=" - "), pr_subject)
-  pr_subject = ifelse(grepl("Homicide", str, fixed=TRUE), paste(pr_subject, "Homicide", sep=" - "), pr_subject)
-  pr_subject = ifelse(grepl("Weapon", str, fixed=TRUE), paste(pr_subject, "Weapon", sep=" - "), pr_subject)
-  pr_subject = ifelse(grepl("Firearms Seizure", str, fixed=TRUE), paste(pr_subject, "Firearm seizure", sep=" - "), pr_subject)
-  pr_subject = ifelse(grepl("Firearm", str, fixed=TRUE), paste(pr_subject, "Firearm", sep=" - "), pr_subject)
-  pr_subject = ifelse(grepl("Theft from Motor Vehicle", str, fixed=TRUE), paste(pr_subject, "Theft from motor vehicle", sep=" - "), pr_subject)
-  pr_subject = ifelse(grepl("Assault with a Weapon", str, fixed=TRUE), paste(pr_subject, "Assault with a weapon", sep=" - "), pr_subject)
-  pr_subject = ifelse(grepl("Break & Enter", str, fixed=TRUE), paste(pr_subject, "Break & enter", sep=" - "), pr_subject)
-  pr_subject = ifelse(grepl("Aggravated Assault", str, fixed=TRUE), paste(pr_subject, "Aggravated assault", sep=" - "), pr_subject)
-  pr_subject = ifelse(grepl("Assault:", str), paste(pr_subject, "Assault", sep=" - "), pr_subject)
-  pr_subject = ifelse(grepl("Assault â", str), paste(pr_subject, "Assault", sep=" - "), pr_subject)
-  pr_subject = ifelse(grepl("Commercial Robbery", str, fixed=TRUE), paste(pr_subject, "Commercial robbery", sep=" - "), pr_subject)
-
-  pr_subject = ifelse(grepl("Scams and Frauds", str, fixed=TRUE), paste(pr_subject, "Fraud", sep=" - "), pr_subject)
-  pr_subject = ifelse(grepl("Fraud", str, fixed=TRUE), paste(pr_subject, "Fraud", sep=" - "), pr_subject)
-  pr_subject = ifelse(grepl("Shooting", str, fixed=TRUE), paste(pr_subject, "Shooting", sep=" - "), pr_subject)
-  pr_subject = ifelse(grepl("Robbery", str, fixed=TRUE), paste(pr_subject, "Robbery", sep=" - "), pr_subject)
-  pr_subject = ifelse(grepl("Serious Assault", str, fixed=TRUE), paste(pr_subject, "Serious assault", sep=" - "), pr_subject)
-  pr_subject = ifelse(grepl("Serious Motor Vehicle Collision", str, fixed=TRUE), paste(pr_subject, "Serious MVC", sep=" - "), pr_subject)
-  pr_subject = ifelse(grepl("Motor Vehicle Collision", str, fixed=TRUE), paste(pr_subject, "MVC", sep=" - "), pr_subject)
-  pr_subject = ifelse(grepl("Police Involved Motor Vehicle Collision", str, fixed=TRUE), paste(pr_subject, "Police-involved MVC", sep=" - "), pr_subject)
-
-  pr_subject = ifelse(grepl("Missing Person", str, fixed=TRUE), paste(pr_subject, "Missing person", sep=" - "), pr_subject)
-  pr_subject = ifelse(grepl("MISSING PERSON", str, fixed=TRUE), paste(pr_subject, "Missing person", sep=" - "), pr_subject)
-  pr_subject = ifelse(grepl("Arson", str, fixed=TRUE), paste(pr_subject, "Arson", sep=" - "), pr_subject)
-  pr_subject = ifelse(grepl("High-Risk Sex Offender", str, fixed=TRUE), paste(pr_subject, "High-Risk sex offender", sep=" - "), pr_subject)
-  pr_subject = ifelse(grepl("Convicted Sex Offender", str, fixed=TRUE), paste(pr_subject, "Convicted sex offender", sep=" - "), pr_subject)
-  pr_subject = ifelse(grepl("Child Sexual Abuse", str, fixed=TRUE), paste(pr_subject, "Child sexual abuse", sep=" - "), pr_subject)
-  pr_subject = ifelse(grepl("Sexual Exploitation", str, fixed=TRUE), paste(pr_subject, "Sexual exploitation", sep=" - "), pr_subject)
-  pr_subject = ifelse(grepl("Sexual Assault Suspect", str, fixed=TRUE), paste(pr_subject, "Sexual assault suspect", sep=" - "), pr_subject)
-  pr_subject = ifelse(grepl("Sexual Assaults ", str, fixed=TRUE), paste(pr_subject, "Sexual assaults", sep=" - "), pr_subject)
-  pr_subject = ifelse(grepl("Sexual Assault ", str, fixed=TRUE), paste(pr_subject, "Sexual assault", sep=" - "), pr_subject)
-  pr_subject = ifelse(grepl("Sexual  Assault", str, fixed=TRUE), paste(pr_subject, "Sexual assault", sep=" - "), pr_subject)
-  pr_subject = ifelse(grepl("Sexual Assault:", str, fixed=TRUE), paste(pr_subject, "Sexual assault", sep=" - "), pr_subject)
-  pr_subject = ifelse(grepl("Stabbing", str, fixed=TRUE), paste(pr_subject, "Stabbing", sep=" - "), pr_subject)
-  pr_subject = ifelse(grepl("Suspicious Death", str, fixed=TRUE), paste(pr_subject, "Suspicious death", sep=" - "), pr_subject)
-  pr_subject = ifelse(grepl("Drug Offence", str, fixed=TRUE), paste(pr_subject, "Drug offence", sep=" - "), pr_subject)
-  pr_subject = ifelse(grepl("Stolen Vehicle", str, fixed=TRUE), paste(pr_subject, "Stolen vehicle", sep=" - "), pr_subject)
-  pr_subject = ifelse(grepl("Commercial Robbery", str, fixed=TRUE), paste(pr_subject, "Commercial Robbery", sep=" - "), pr_subject)
-  pr_subject = ifelse(grepl("Assault Peace Officer", str, fixed=TRUE), paste(pr_subject, "Assault peace officer", sep=" - "), pr_subject)
-  pr_subject = ifelse(grepl("Carjacking", str, fixed=TRUE), paste(pr_subject, "Carjacking", sep=" - "), pr_subject)
-  pr_subject = ifelse(grepl("Suspicious Incidents", str, fixed=TRUE), paste(pr_subject, "Suspicious incidents", sep=" - "), pr_subject)
-
-  encoded_release = paste(pr_type, ":::", pr_subject, sep="")
+  encoded_release = paste(pr_type, ":::", pr_subject, sep=" ")
   invisible(encoded_release)
 
 }
@@ -139,7 +142,7 @@ wps_release_headings.raw <- read_csv(wps_release_headings.raw.file) %>%
     values_to = "encoded_release"
   ) %>%
   filter(
-    encoded_release != ":::"
+    encoded_release != "Other ::: "
   ) %>%
   mutate(
     encoded_release_ORIG = encoded_release
@@ -148,8 +151,10 @@ wps_release_headings.raw <- read_csv(wps_release_headings.raw.file) %>%
   mutate(
     type = str_trim(type, side = c("both")),
     type = str_squish(type),
+    type = gsub("- ", "", type),
     subject = str_trim(subject, side = "both"),
     subject = str_squish(subject),
+    subject = gsub("- ", "", subject),
     date_month = ifelse(month(date) < 10,
                         paste(year(date), "-0", month(date), "-01", sep=""),
                         paste(year(date), month(date), "-01", sep="")
@@ -160,6 +165,54 @@ wps_release_headings.raw <- read_csv(wps_release_headings.raw.file) %>%
     date_year = as.Date(date_year),
     type = ifelse(is.na(type), "Other", type),
     type = ifelse(type == "", "Other", type)
+  ) %>%
+  mutate(
+    type = factor(type, levels=c(
+      "Investigation",
+      "Arrest",
+      "Charges",
+      "Update",
+      "Public assistance",
+      "Community notification",
+      "Public advisory",
+      "Warning",
+      "Officer-involved shooting",
+      "Missing person located",
+      "Operation/project announcement/update",
+      "Statement",
+      "Other"
+    )),
+    subject = factor(subject, levels=c(
+      "Assault",
+      "Aggravated assault",
+      "Serious assault",
+      "Assault peace officer",
+      "Shooting",
+      "Stabbing",
+      "Homicide",
+      "Suspicious death",
+      "Suspicious incidents",
+      "Arson",
+      "Break & enter",
+      "Theft from motor vehicle",
+      "Carjacking",
+      "Stolen vehicle",
+      "Robbery",
+      "Commercial robbery",
+      "Drugs",
+      "Firearms",
+      "Weapon",
+      "Fraud",
+      "Sexual exploitation",
+      "Child sexual abuse",
+      "Sexual assault",
+      "Sexual assault suspect",
+      "Convicted sex offender",
+      "High-Risk sex offender",
+      "Missing person",
+      "MVC",
+      "Other"
+    ))
   )
 
 
@@ -169,7 +222,8 @@ write_feather(wps_release_headings.raw, dir_data_processed('wps_release_headings
 wps_release_headings <- read_feather(dir_data_processed('wps_release_headings.feather'))
 
 
-View(wps_release_headings)
+types_unique <- unique(wps_release_headings$type)
+subject_unique <- unique(wps_release_headings$subject)
 
 
 wps_release_headings_monthly_type <- wps_release_headings %>%
@@ -189,5 +243,22 @@ wps_release_headings_monthly_subject <- wps_release_headings %>%
 wps_release_headings_annual_subject <- wps_release_headings %>%
   group_by(date_year, subject) %>%
   summarise(count = n())
+
+
+
+
+
+wps_release_headings_monthly_type_wide <- wps_release_headings_monthly_type %>%
+  pivot_wider(names_from="type", names_prefix="", values_from="count" )
+
+wps_release_headings_annual_type_wide <- wps_release_headings_annual_type %>%
+  pivot_wider(names_from="type", names_prefix="", values_from="count" )
+
+wps_release_headings_monthly_subject_wide <- wps_release_headings_monthly_subject %>%
+  pivot_wider(names_from="subject", names_prefix="", values_from="count" )
+
+wps_release_headings_annual_subject_wide <- wps_release_headings_annual_subject %>%
+  pivot_wider(names_from="subject", names_prefix="", values_from="count" )
+
 
 

@@ -11,5 +11,8 @@ run_analyze()
 run_visualize()
 
 source(here::here("R/", "process_wps_release_headings.R"))
+source(here::here("R/", "visualize_wps_release_types.R"))
+source(here::here("R/", "visualize_wps_release_subject.R"))
+
 
 run_notebook(filename="notebook-policing-missing-pio.Rmd")
