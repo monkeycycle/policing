@@ -30,7 +30,13 @@ run_process()
 run_analyze()
 run_visualize()
 
+source(here::here("R/", "process_ottawa_police_releases.R"))
+source(here::here("R/", "process_calgary_police_releases.R"))
+source(here::here("R/", "process_regina_police_releases.R"))
+source(here::here("R/", "process_saskatoon_police_releases.R"))
+
 source(here::here("R/", "process_wps_release_headings.R"))
+source(here::here("R/", "process_wps_release_headings_unstack.R"))
 source(here::here("R/", "visualize_wps_release_types.R"))
 source(here::here("R/", "visualize_wps_release_subject.R"))
 
@@ -246,12 +252,179 @@ plot(wfp_wps_cdsa_crimes_clearance)
 
 ## Other cities
 
+
+### Calgary
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.width=8.66, fig.height=6, results="asis", collapse = TRUE}
+
+plot(p_calgary_release_monthly)
+
+plot(p_calgary_release_annual)
+
+
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.width=8.66, fig.height=6, results="asis", collapse = TRUE}
+datatable(calgary_release_monthly,
+  caption = "Table: calgary_release_monthly",
+  class = "cell-border stripe",
+  rownames = FALSE,
+  filter = "top",
+  options = list(
+    pageLength = 20,
+    order = list(list(0, "asc"))
+    # language = list(search = 'Filter:'),
+    # search = list(regex = TRUE, caseInsensitive = FALSE, search = 'Police')
+  )
+)
+
+datatable(calgary_release_monthly,
+  caption = "Table: calgary_release_annual",
+  class = "cell-border stripe",
+  rownames = FALSE,
+  filter = "top",
+  options = list(
+    pageLength = 20,
+    order = list(list(0, "asc"))
+    # language = list(search = 'Filter:'),
+    # search = list(regex = TRUE, caseInsensitive = FALSE, search = 'Police')
+  )
+)
+
+
+```
+
+
+
+### Regina
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.width=8.66, fig.height=6, results="asis", collapse = TRUE}
+
+plot(p_regina_release_monthly)
+plot(p_regina_release_annual)
+
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.width=8.66, fig.height=6, results="asis", collapse = TRUE}
+datatable(regina_release_monthly,
+  caption = "Table: regina_release_monthly",
+  class = "cell-border stripe",
+  rownames = FALSE,
+  filter = "top",
+  options = list(
+    pageLength = 20,
+    order = list(list(0, "asc"))
+    # language = list(search = 'Filter:'),
+    # search = list(regex = TRUE, caseInsensitive = FALSE, search = 'Police')
+  )
+)
+
+datatable(regina_release_annual,
+  caption = "Table: regina_release_annual",
+  class = "cell-border stripe",
+  rownames = FALSE,
+  filter = "top",
+  options = list(
+    pageLength = 20,
+    order = list(list(0, "asc"))
+    # language = list(search = 'Filter:'),
+    # search = list(regex = TRUE, caseInsensitive = FALSE, search = 'Police')
+  )
+)
+
+
+```
+
+
+
+### Saskatoon
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.width=8.66, fig.height=6, results="asis", collapse = TRUE}
+
+plot(p_saskatoon_release_monthly)
+plot(p_saskatoon_release_annual)
+
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.width=8.66, fig.height=6, results="asis", collapse = TRUE}
+datatable(saskatoon_release_monthly,
+  caption = "Table: saskatoon_release_monthly",
+  class = "cell-border stripe",
+  rownames = FALSE,
+  filter = "top",
+  options = list(
+    pageLength = 20,
+    order = list(list(0, "asc"))
+    # language = list(search = 'Filter:'),
+    # search = list(regex = TRUE, caseInsensitive = FALSE, search = 'Police')
+  )
+)
+
+datatable(saskatoon_release_annual,
+  caption = "Table: saskatoon_release_annual",
+  class = "cell-border stripe",
+  rownames = FALSE,
+  filter = "top",
+  options = list(
+    pageLength = 20,
+    order = list(list(0, "asc"))
+    # language = list(search = 'Filter:'),
+    # search = list(regex = TRUE, caseInsensitive = FALSE, search = 'Police')
+  )
+)
+
+
+```
+
+
 ### Ottawa
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.width=8.66, fig.height=6, results="asis", collapse = TRUE}
 
 datatable(ottawa_police_pressers_annual,
   caption = "Table: ottawa_police_pressers_annual",
+  class = "cell-border stripe",
+  rownames = FALSE,
+  filter = "top",
+  options = list(
+    pageLength = 20,
+    order = list(list(0, "asc"))
+    # language = list(search = 'Filter:'),
+    # search = list(regex = TRUE, caseInsensitive = FALSE, search = 'Police')
+  )
+)
+
+```
+
+
+*** 
+
+
+## Unstacked 
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.width=8.66, fig.height=6, results="asis", collapse = TRUE}
+plot(p_releases_2018_2021_annual_unstacked)
+```
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.width=8.66, fig.height=6, results="asis", collapse = TRUE}
+
+datatable(wps_unstacked_releases_annual,
+  caption = "Table: wps_unstacked_releases_annual",
+  class = "cell-border stripe",
+  rownames = FALSE,
+  filter = "top",
+  options = list(
+    pageLength = 20,
+    order = list(list(0, "asc"))
+    # language = list(search = 'Filter:'),
+    # search = list(regex = TRUE, caseInsensitive = FALSE, search = 'Police')
+  )
+)
+
+
+datatable(wps_unstacked_releases_monthly_wide,
+  caption = "Table: wps_unstacked_releases_monthly_wide",
   class = "cell-border stripe",
   rownames = FALSE,
   filter = "top",

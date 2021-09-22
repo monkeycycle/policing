@@ -10,7 +10,13 @@ run_process()
 run_analyze()
 run_visualize()
 
+source(here::here("R/", "process_ottawa_police_releases.R"))
+source(here::here("R/", "process_calgary_police_releases.R"))
+source(here::here("R/", "process_regina_police_releases.R"))
+source(here::here("R/", "process_saskatoon_police_releases.R"))
+
 source(here::here("R/", "process_wps_release_headings.R"))
+source(here::here("R/", "process_wps_release_headings_unstack.R"))
 source(here::here("R/", "visualize_wps_release_types.R"))
 source(here::here("R/", "visualize_wps_release_subject.R"))
 

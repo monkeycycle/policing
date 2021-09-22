@@ -14,7 +14,7 @@ initialize_startr(
     'tidyverse', 'glue', 'lubridate', 'readxl', 'feather',
     'scales', 'knitr', 'rvest', 'janitor', 'zoo',
     "readr", "DT", "dotenv",
-    "prettydoc", "plotly",
+    "prettydoc", "plotly", "splitstackshape",
     "ggtext", "showtext", "stringr"
     # 'sf', 'tidymodels',
     # 'gganimate', 'tgamtheme',
@@ -33,3 +33,6 @@ wps_annual_reports.raw.file <- dir_data_raw("wps_annual_reports.xlsx")
 wps_release_headings.raw.file <- dir_data_raw("wps_releases_headings.csv")
 
 ottawa_police_pressers.raw.file <- dir_data_raw("WFP - WPS Missing PIO - ottawa-police-releases.csv")
+calgary_police_pressers.raw.file <- dir_data_raw("WFP - WPS Missing PIO - calgary-press-releases.csv")
+regina_police_pressers.raw.file <- dir_data_raw("WFP - WPS Missing PIO - regina-police-releases.csv")
+saskatoon_police_pressers.raw.file <- dir_data_raw("WFP - WPS Missing PIO - saskatoon-police-releases.csv")
