@@ -77,9 +77,6 @@ encode_release <-  function(str){
 
 wps_release_headings.raw <- read_csv(wps_release_headings.raw.file) %>%
   clean_names() %>%
-  rename(
-    date = heading_2
-  ) %>%
   mutate(
     date = gsub(" Media Releases", "", date, fixed=TRUE),
     date = gsub(" Media Release", "", date, fixed=TRUE),
@@ -222,8 +219,10 @@ write_feather(wps_release_headings.raw, dir_data_processed('wps_release_headings
 wps_release_headings <- read_feather(dir_data_processed('wps_release_headings.feather'))
 
 
+wps_release_headings_cop_shooting <- wps_release_headings %>%
+  filter(grepl("involved|Involved", headline_string))
 
-
+wps_release_headings_cop_shooting_headlines <- unique(wps_release_headings_cop_shooting$headline_string)
 
 types_unique <- unique(wps_release_headings$type)
 subject_unique <- unique(wps_release_headings$subject)

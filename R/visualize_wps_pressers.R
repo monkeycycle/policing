@@ -18,7 +18,7 @@ p_pressers_2018_2021_annual <- ggplot(wps_pressers_2018_2021_annual,aes(x=year_d
   scale_y_continuous(expand = c(0, 0), limits = c(0, 100)) +
   labs(
     title="Press conferences held by the Winnipeg Police Service",
-    subtitle="Number of press conferences",
+    subtitle="",
     x="",
     y="",
     caption="WINNIPEG FREE PRESS — SOURCE: WINNIPEG POLICE SERVICE"
@@ -50,7 +50,7 @@ p_pressers_2018_2021_monthly <- ggplot(wps_pressers_2018_2021_monthly,aes(x=year
     subtitle="Number of press conferences",
     x="",
     y="",
-    caption="WINNIPEG FREE PRESS — SOURCE: WINNIPEG POLICE SERVICE"
+    caption = paste("Note: 2021 data is year to date", "\n", "WINNIPEG FREE PRESS — SOURCE: WINNIPEG POLICE SERVICE", sep="")
   ) +
   minimal_theme() +
   theme(
@@ -63,8 +63,18 @@ p_pressers_2018_2021_monthly <- ggplot(wps_pressers_2018_2021_monthly,aes(x=year
     panel.grid.minor.y = ggplot2::element_blank()
   )
 
+
+p_pressers_2018_2021_annual_print <- p_pressers_2018_2021_annual +
+  minimal_theme_print()
+
+
+
 wfp_pressers_2018_2021_monthly <- prepare_plot(p_pressers_2018_2021_monthly)
 ggsave_pngpdf(wfp_pressers_2018_2021_monthly, "wfp_pressers_2018_2021_monthly", width_var=8.66, height_var=6, dpi_var=96, scale_var=1, units_var="in")
 
 wfp_pressers_2018_2021_annual <- prepare_plot(p_pressers_2018_2021_annual)
 ggsave_pngpdf(wfp_pressers_2018_2021_annual, "wfp_pressers_2018_2021_annual", width_var=8.66, height_var=6, dpi_var=96, scale_var=1, units_var="in")
+
+
+wfp_pressers_2018_2021_annual_print <- prepare_plot(p_pressers_2018_2021_annual_print)
+ggsave_pngpdf(wfp_pressers_2018_2021_annual_print, "wfp_pressers_2018_2021_annual_print", width_var=8.66, height_var=6, dpi_var=96, scale_var=1, units_var="in")

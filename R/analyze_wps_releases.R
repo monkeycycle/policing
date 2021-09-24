@@ -1,9 +1,9 @@
 
-wps_releases_2018_2021 <- read_feather(dir_data_processed('wps_releases_2018_2021.feather'))
+wps_releases <- read_feather(dir_data_processed('wps_releases.feather'))
 
 
 
-wps_releases_2018_2021_annual <- wps_releases_2018_2021 %>%
+wps_releases_annual <- wps_releases %>%
   mutate(
     year = year(date),
     year_date = paste(year(date), "-01-31", sep="")
@@ -17,7 +17,7 @@ wps_releases_2018_2021_annual <- wps_releases_2018_2021 %>%
   ) %>%
   filter(!is.na(year_date))
 
-wps_releases_2018_2021_monthly <- wps_releases_2018_2021 %>%
+wps_releases_monthly <- wps_releases %>%
   mutate(
     year_month = paste(year(date), "-", month(date), "-01", sep = "")
   ) %>%
@@ -33,7 +33,7 @@ wps_releases_2018_2021_monthly <- wps_releases_2018_2021 %>%
   filter(!is.na(year_month))
 
 
-wps_releases_2018_2021_monthly_wide <- wps_releases_2018_2021_monthly %>%
+wps_releases_monthly_wide <- wps_releases_monthly %>%
   separate(year_month, c("year", "month", "dayTOSS")) %>%
   select(-dayTOSS) %>%
   pivot_wider(names_from="year", names_prefix="year_", values_from="count" ) %>%

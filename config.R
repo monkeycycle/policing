@@ -27,10 +27,10 @@ font_add_google("Open Sans")
 last_update_timestamp <- Sys.Date()
 
 # Data files
-wps_releases_2018_2021.raw.file <- dir_data_raw("WFP - WPS Missing PIO - wps-press-releases.csv")
+wps_releases.raw.file <- dir_data_raw("WFP - WPS Missing PIO - wps-press-releases.csv")
 wps_pressers_2018_2021.raw.file <- dir_data_raw("WFP - WPS Missing PIO - wps-press-conferences.csv")
 wps_annual_reports.raw.file <- dir_data_raw("wps_annual_reports.xlsx")
-wps_release_headings.raw.file <- dir_data_raw("wps_releases_headings.csv")
+wps_release_headings.raw.file <- dir_data_raw("WFP - WPS Missing PIO - wps_releases_headings.csv")
 
 ottawa_police_pressers.raw.file <- dir_data_raw("WFP - WPS Missing PIO - ottawa-police-releases.csv")
 calgary_police_pressers.raw.file <- dir_data_raw("WFP - WPS Missing PIO - calgary-press-releases.csv")

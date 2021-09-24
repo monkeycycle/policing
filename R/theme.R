@@ -38,6 +38,45 @@ minimal_theme <- function() {
   )
 }
 
+minimal_theme_print <- function() {
+  font <- "Eurostile LT Bold Condensed"
+
+  ggplot2::theme(
+
+    plot.margin=unit(c(.5,.8,0,.8),"cm"),
+    plot.background = ggplot2::element_rect( fill = "#fefefe", colour = NA ),
+    plot.title = ggplot2::element_text(family=font, size=18, lineheight=1.2, face="bold", color="#222222", margin=ggplot2::margin(0,0,5,0)),
+    plot.subtitle = ggplot2::element_text(family=font, size=14, lineheight=1, color="#222222", margin=ggplot2::margin(5,0,30,0)),
+    plot.caption = ggplot2::element_text(family=font, size=10, color="#222222", hjust = 0, margin=ggplot2::margin(20,0,0,0)),
+
+    axis.title = ggplot2::element_text(family=font, face="bold", size=10, color="#222222"),
+    axis.text = ggplot2::element_text(family=font, size=10, color="#222222"),
+    # axis.line = ggplot2::element_blank(),
+    # # axis.line.x = ggplot2::element_line(color="#777777"),
+    # axis.line.y = ggplot2::element_blank(),
+    axis.ticks = ggplot2::element_line(color="#777777"),
+    # axis.ticks.x = ggplot2::element_line(color="#777777"),
+    # axis.ticks.y = ggplot2::element_blank(),
+
+    legend.position = "top",
+    legend.text.align = 0,
+    legend.background = ggplot2::element_blank(),
+    legend.text = ggplot2::element_text(family=font, size=12, color="#222222"),
+    legend.key.width = unit(3, "mm"),
+    legend.key.height = unit(3, "mm"),
+
+
+    panel.grid.major.y = ggplot2::element_line(color="#ebebeb"),
+    panel.grid.major.x = ggplot2::element_blank(),
+    panel.grid.minor = ggplot2::element_blank(),
+    panel.background = ggplot2::element_blank(),
+    panel.spacing = unit(2, "lines"),
+
+    strip.background = ggplot2::element_rect(fill="white"),
+    strip.text = ggplot2::element_text(size  = 12, hjust = 0)
+  )
+}
+
 
 minimal_theme_map <- function() {
 

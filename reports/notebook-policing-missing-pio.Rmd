@@ -48,12 +48,12 @@ source(here::here("R/", "visualize_wps_release_subject.R"))
 
 
 * 69.76 per cent decrease in press conferences between 2018 and 2021
-* The number of press conferences was halved in 2020 with a 43.8 per cent decrease from 2019. 
+* The number of press conferences was halved in 2020 with a 43.8 per cent decrease from 2019.
 * At a little less than three-quarters of the way through the year, 2021 is on track to set a new record low for the number of WPS press conferences
 
 * Ottawa Police (2016 population 989,657) have issued 553 press releases since 2018 compared to 237 from the Winnipeg Police Service (2016 population 711,925)
 
-*** 
+***
 
 ## WPS press conferences
 
@@ -109,8 +109,8 @@ plot(wfp_releases_2018_2021_monthly)
 ```
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.width=8.66, fig.height=6, results="asis", collapse = TRUE}
-datatable(wps_releases_2018_2021_annual,
-  caption = "Table: wps_releases_2018_2021_annual",
+datatable(wps_releases_annual,
+  caption = "Table: wps_releases_annual",
   class = "cell-border stripe",
   rownames = FALSE,
   filter = "top",
@@ -122,8 +122,8 @@ datatable(wps_releases_2018_2021_annual,
   )
 )
 
-datatable(wps_releases_2018_2021_monthly_wide,
-  caption = "Table: wps_releases_2018_2021_monthly_wide",
+datatable(wps_releases_monthly_wide,
+  caption = "Table: wps_releases_monthly_wide",
   class = "cell-border stripe",
   rownames = FALSE,
   filter = "top",
@@ -137,7 +137,7 @@ datatable(wps_releases_2018_2021_monthly_wide,
 
 ```
 
-*** 
+***
 
 ## Press releases by type and subject
 
@@ -248,7 +248,7 @@ plot(wfp_wps_cdsa_crimes_clearance)
 ```
 
 
-*** 
+***
 
 ## Other cities
 
@@ -397,10 +397,10 @@ datatable(ottawa_police_pressers_annual,
 ```
 
 
-*** 
+***
 
 
-## Unstacked 
+## Unstacked
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.width=8.66, fig.height=6, results="asis", collapse = TRUE}
 plot(p_releases_2018_2021_annual_unstacked)

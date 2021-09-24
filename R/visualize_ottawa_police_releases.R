@@ -39,7 +39,7 @@ p_ottawa_releases_2018_2021_annual <- ggplot(ottawa_police_pressers_annual,aes(x
   )
 
 #
-# p_releases_2018_2021_monthly <- ggplot(wps_releases_2018_2021_monthly,aes(x=year_month,y=count)) +
+# p_releases_2018_2021_monthly <- ggplot(wps_releases_monthly,aes(x=year_month,y=count)) +
 #   geom_bar(stat="identity", fill=wfp_blue) +
 #   geom_smooth(fill=NA, colour="#ffffff", size=1.4) +
 #   geom_smooth(fill=nominalMuted_shade_1, colour=nominalBold_shade_1, size=1) +

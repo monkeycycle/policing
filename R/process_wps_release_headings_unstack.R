@@ -1,9 +1,14 @@
 
+wps_release_headings_stacked_prs_ref <- read_csv(wps_release_headings.raw.file) %>%
+  clean_names() %>%
+  mutate(
+    date = gsub(" Media Releases", "", date, fixed=TRUE),
+    date = gsub(" Media Release", "", date, fixed=TRUE),
+    date = as.Date(date, format="%B %d, %Y")
+  )
+
 wps_release_headings_stacked_prs <- read_csv(wps_release_headings.raw.file) %>%
   clean_names() %>%
-  rename(
-    date = heading_2
-  ) %>%
   mutate(
     date = gsub(" Media Releases", "", date, fixed=TRUE),
     date = gsub(" Media Release", "", date, fixed=TRUE),
@@ -19,6 +24,11 @@ wps_release_headings_stacked_prs <- read_csv(wps_release_headings.raw.file) %>%
   ) %>%
   filter(!is.na(subject)) %>%
   filter(!is.na(date)) %>%
+  filter(subject != "Was this information helpful?") %>%
+  filter(subject != "How can we make this web page better?") %>%
+  filter(subject != "Ces renseignements sont-ils utiles?") %>%
+  filter(subject != "Comment pourrait-on améliorer cette page Web?") %>%
+  filter(subject != "ARRESTED") %>%
   mutate(
     date_month = paste(year(date), "-", month(date), "-01", sep=""),
     date_year = paste(year(date), "-01-01", sep="")
@@ -64,7 +74,10 @@ p_releases_2018_2021_annual_unstacked <- ggplot(wps_unstacked_releases_annual,ae
     aes(
       x=date_year,
       y=count,
-      label = paste(count, sep = "")
+      label = ifelse(date_year == as.Date("2021-01-01"),
+        paste(count, " (YTD)", sep = ""),
+        paste(count, sep = "")
+      )
     ),
     vjust=-1,
     # fontface="bold",
@@ -72,19 +85,18 @@ p_releases_2018_2021_annual_unstacked <- ggplot(wps_unstacked_releases_annual,ae
   ) +
   scale_x_date(expand = c(0, 0),
                date_breaks = "1 year",
-               labels = date_format("%Y"),
-               limits=as.Date(c("2017-01-31", "2021-12-31"))) +
+               labels = date_format("%Y")
+               # limits=as.Date(c("2016-01-31", "2021-12-31"))
+               ) +
   scale_y_continuous(expand = c(0, 0),
-                     limits = c(0, 750)
+                     limits = c(0, 800)
   ) +
   labs(
-    title="UNSTACKED Press releases issued by the Winnipeg Police Service",
-    subtitle="Number of press releases",
+    title="Press releases issued by the Winnipeg Police Service",
+    subtitle="",
     x="",
     y="",
-    caption = paste("Note: The 2018 releases are limited to October through December.",
-                    "\n",
-                    "WINNIPEG FREE PRESS — SOURCE: WINNIPEG POLICE SERVICE", sep="")
+    caption = paste("Note: 2021 data is year to date", "\n", "WINNIPEG FREE PRESS — SOURCE: WINNIPEG POLICE SERVICE", sep="")
   ) +
   minimal_theme() +
   theme(
@@ -96,4 +108,14 @@ p_releases_2018_2021_annual_unstacked <- ggplot(wps_unstacked_releases_annual,ae
     panel.grid.minor.x = ggplot2::element_blank(),
     panel.grid.minor.y = ggplot2::element_blank()
   )
+
+p_releases_2018_2021_annual_unstacked_print <- p_releases_2018_2021_annual_unstacked +
+  minimal_theme_print()
+
+wfp_releases_2018_2021_annual_unstacked <- prepare_plot(p_releases_2018_2021_annual_unstacked)
+wfp_releases_2018_2021_annual_unstacked_print <- prepare_plot(p_releases_2018_2021_annual_unstacked_print)
+
+ggsave_pngpdf(wfp_releases_2018_2021_annual_unstacked, "wfp_releases_2018_2021_annual", width_var=8.66, height_var=6, dpi_var=96, scale_var=1, units_var="in")
+ggsave_pngpdf(wfp_releases_2018_2021_annual_unstacked_print, "wfp_releases_2018_2021_annual_unstacked_print", width_var=8.66, height_var=6, dpi_var=96, scale_var=1, units_var="in")
+
 
